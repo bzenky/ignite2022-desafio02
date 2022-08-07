@@ -10,4 +10,8 @@ export const GlobalStyle = createGlobalStyle`
   body {
     background-color: ${({ theme }) => theme.background};
   }
+
+  body, input, textarea, button {
+        font-family: 'Roboto', sans-serif;
+    }
 `

@@ -7,8 +7,6 @@ export const HeaderContainer = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1120px;
-    margin: 0 auto;
 
     >div {
       display: flex;
