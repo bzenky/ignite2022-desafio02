@@ -1,6 +1,7 @@
 import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react';
 import coffeeDeliverySplash from '../../assets/coffeeDeliverySplash.png';
-import { Benefit, BenefitContainer, BenefitIconWrapper, BenefitsContainer, HomeContainer, SplashContainer, SubTitle, Title, TitleContainer } from './styles';
+import { CoffeeCard } from '../../components/CoffeeCard';
+import { Benefit, BenefitContainer, BenefitIconWrapper, BenefitsContainer, HomeContainer, MenuContainer, MenuItems, MenuTitle, SplashContainer, SubTitle, Title, TitleContainer } from './styles';
 
 export function Home() {
   return (
@@ -27,25 +28,35 @@ export function Home() {
               </Benefit>
             </BenefitContainer>
 
-              <BenefitContainer>
-                <Benefit>
-                  <BenefitIconWrapper backgroundColor='#574F4D'>
-                    <Package size={16} weight="fill" color="white" />
-                  </BenefitIconWrapper>
-                  Embalagem mantém o café intacto
-                </Benefit>
-                <Benefit>
-                  <BenefitIconWrapper backgroundColor='#8047F8'>
-                    <Coffee size={16} weight="fill" color="white" />
-                  </BenefitIconWrapper>
-                  O café chega fresquinho até você
-                </Benefit>
-              </BenefitContainer>
+            <BenefitContainer>
+              <Benefit>
+                <BenefitIconWrapper backgroundColor='#574F4D'>
+                  <Package size={16} weight="fill" color="white" />
+                </BenefitIconWrapper>
+                Embalagem mantém o café intacto
+              </Benefit>
+              <Benefit>
+                <BenefitIconWrapper backgroundColor='#8047F8'>
+                  <Coffee size={16} weight="fill" color="white" />
+                </BenefitIconWrapper>
+                O café chega fresquinho até você
+              </Benefit>
+            </BenefitContainer>
           </BenefitsContainer>
         </TitleContainer>
 
         <img src={coffeeDeliverySplash} alt="" />
       </SplashContainer>
+
+      <MenuContainer>
+        <MenuTitle>
+          Nossos cafés
+        </MenuTitle>
+
+        <MenuItems>
+          <CoffeeCard />
+        </MenuItems>
+      </MenuContainer>
     </HomeContainer>
   )
 }
