@@ -1,6 +1,8 @@
 import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react';
+import { useContext } from 'react';
 import coffeeDeliverySplash from '../../assets/coffeeDeliverySplash.png';
 import { CoffeeCard } from '../../components/CoffeeCard';
+import { CheckoutContext } from '../../contexts/CheckoutContext';
 import { Benefit, BenefitContainer, BenefitIconWrapper, BenefitsContainer, HomeContainer, MenuContainer, MenuItems, MenuTitle, SplashBackground, SplashContainer, SubTitle, Title, TitleContainer } from './styles';
 
 export function Home() {
