@@ -1,4 +1,5 @@
 import { ShoppingCartSimple } from "phosphor-react";
+import { formatPrice } from "../../utils/formatPrice";
 import { productsList } from "../../utils/productsList";
 import {
   AddCartBtn,
@@ -21,14 +22,12 @@ interface ProductProps {
   id: number
   name: string
   description: string
-  price: string
+  price: number
   image: string
   tags: string[]
 }
 
 export function CoffeeCard() {
-  console.log(productsList)
-
   return (
     <>
       {productsList.map((product: ProductProps) => {
@@ -45,7 +44,7 @@ export function CoffeeCard() {
             </CoffeeDescription>
 
             <BuyContainer>
-              <Price>R$<span>{product.price}</span></Price>
+              <Price>R$<span>{formatPrice(product.price)}</span></Price>
 
               <BuyActionWrapper>
                 <ProductAmountWrapper>
