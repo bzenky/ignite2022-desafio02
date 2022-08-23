@@ -9,6 +9,8 @@ interface CheckoutOrderSpanProps {
 }
 
 export const CheckoutDoneContainer = styled.div`
+  max-width: 1120px;
+  margin: 0 auto;
   margin-top: 80px;
   line-height: 1.3;
 `
@@ -37,6 +39,7 @@ export const CheckoutOrderInfoWrapper = styled.div`
   justify-content: center;
   gap: 32px;
   width: 100%;
+  max-width: 526px;
   border-radius: 6px 36px;
   padding: 40px;
   background-color: ${({ theme }) => theme.background};

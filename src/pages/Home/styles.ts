@@ -9,17 +9,23 @@ export const HomeContainer = styled.div``
 export const TitleContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 16px;  
+  max-width: 1120px;
+  margin: 0 auto;
   line-height: 1.3;
-  `
+`
 
-export const SplashContainer = styled.div`
-  position: relative;
+export const SplashBackground = styled.div` 
+  background-image: url(/splashBackground.svg);
+`
+
+export const SplashContainer = styled.div`  
   display: flex;
   align-items: center;
   gap: 56px;
   padding: 6rem 0;
-  z-index: 5;
+  max-width: 1120px;
+  margin: 0 auto;
 `
 
 export const Title = styled.h1`
@@ -65,7 +71,9 @@ export const Benefit = styled.span`
   color: ${({ theme }) => theme['gray-600']};
 `
 
-export const MenuContainer = styled.div`
+export const MenuContainer = styled.div`  
+  max-width: 1120px;
+  margin: 0 auto;
   padding-bottom: 3rem;
 `
 

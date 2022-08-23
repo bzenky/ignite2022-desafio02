@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
 export const HeaderContainer = styled.header`
+  max-width: 1120px;
+  margin: 0 auto;
   padding: 32px 0;
 
   nav {
@@ -22,7 +24,7 @@ export const LocationTag = styled.span`
   padding: 8px;
   font-size: 0.875rem;
   color: ${({ theme }) => theme['purple-700']};
-  background-color: ${({theme}) => theme['purple-100']};
+  background-color: ${({ theme }) => theme['purple-100']};
   border-radius: 6px;
 `
 

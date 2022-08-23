@@ -14,6 +14,8 @@ interface FormInputProps extends InputHTMLAttributes<HTMLInputElement> {
 export const CheckoutContainer = styled.div`
   display: flex;
   gap: 32px;
+  max-width: 1120px;
+  margin: 0 auto;
 `
 
 export const OrderDeliveryPaymentWrapper = styled.div``
