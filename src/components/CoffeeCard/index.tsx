@@ -1,6 +1,7 @@
 import { ShoppingCartSimple } from "phosphor-react";
+import { useState } from "react";
+import { useCart } from "../../hooks/useCart";
 import { formatPrice } from "../../utils/formatPrice";
-import { productsList } from "../../utils/productsList";
 import {
   AddCartBtn,
   BuyActionWrapper,
@@ -18,56 +19,75 @@ import {
   StyledPlus
 } from "./styles";
 
-interface ProductProps {
+export interface ProductProps {
   id: number
   name: string
   description: string
   price: number
   image: string
   tags: string[]
+  quantity?: number
 }
 
-export function CoffeeCard() {
+export interface CoffeeProps {
+  coffee: ProductProps
+}
+
+export function CoffeeCard({coffee}: CoffeeProps) {
+  const [quantity, setQuantity] = useState(1)
+  const { addProductCart } = useCart()
+
+  function handleIncreaseQuantity() {
+    setQuantity(state => state + 1)
+  }
+
+  function handleDecreaseQuantity() {
+    setQuantity(state => state - 1)
+  }
+
+  function handleAddToCart() {
+    const productToAdd = {
+      ...coffee,
+      quantity
+    }
+
+    addProductCart(productToAdd)
+  }
+
   return (
-    <>
-      {productsList.map((product: ProductProps) => {
-        return (
-          <CoffeeCardContainer key={product.id}>
-            <img src={product.image} alt="" width="120" height="120" />
+    <CoffeeCardContainer key={coffee.id}>
+      <img src={coffee.image} alt="" width="120" height="120" />
 
-            <Tag>tradicional</Tag>
+      <Tag>tradicional</Tag>
 
-            <CoffeeType>{product.name}</CoffeeType>
+      <CoffeeType>{coffee.name}</CoffeeType>
 
-            <CoffeeDescription>
-              {product.description}
-            </CoffeeDescription>
+      <CoffeeDescription>
+        {coffee.description}
+      </CoffeeDescription>
 
-            <BuyContainer>
-              <Price>R$<span>{formatPrice(product.price)}</span></Price>
+      <BuyContainer>
+        <Price>R$<span>{formatPrice(coffee.price)}</span></Price>
 
-              <BuyActionWrapper>
-                <ProductAmountWrapper>
-                  <ProductMinusAmountButton>
-                    <StyledMinus weight="bold" />
-                  </ProductMinusAmountButton>
+        <BuyActionWrapper>
+          <ProductAmountWrapper>
+            <ProductMinusAmountButton disabled={quantity <= 1} onClick={handleDecreaseQuantity}>
+              <StyledMinus weight="bold" />
+            </ProductMinusAmountButton>
 
-                  <ProductAmountInput min="1" max="10" defaultValue={1} readOnly />
+            <ProductAmountInput min="1" max="10" id={coffee.id.toString()} name={coffee.id.toString()} value={quantity} readOnly />
 
-                  <ProductPlusAmountButton>
-                    <StyledPlus weight="bold" />
-                  </ProductPlusAmountButton>
-                </ProductAmountWrapper>
+            <ProductPlusAmountButton onClick={handleIncreaseQuantity}>
+              <StyledPlus weight="bold" />
+            </ProductPlusAmountButton>
+          </ProductAmountWrapper>
 
-                <AddCartBtn>
-                  <ShoppingCartSimple size={22} color="white" weight="fill" />
-                </AddCartBtn>
-              </BuyActionWrapper>
+          <AddCartBtn onClick={handleAddToCart}>
+            <ShoppingCartSimple size={22} color="white" weight="fill" />
+          </AddCartBtn>
+        </BuyActionWrapper>
 
-            </BuyContainer>
-          </CoffeeCardContainer>
-        )
-      }, [])}
-    </>
+      </BuyContainer>
+    </CoffeeCardContainer>
   )
 }

@@ -29,6 +29,7 @@ export const LocationTag = styled.span`
 `
 
 export const CartButton = styled.button`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,4 +38,22 @@ export const CartButton = styled.button`
   border: 0;
   border-radius: 8px;
   cursor: pointer;
+`
+
+export const CartLength = styled.span `
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  transform: translate(-50%, 50%);
+  content: '';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  background-color: ${({theme}) => theme['yellow-700']};
+  color: ${({theme}) => theme.white};
+  font-weight: 700;
+  font-size: 0.75rem;
 `
