@@ -20,14 +20,14 @@ export const CheckoutContext = createContext({} as CheckoutContextProps)
 
 export function CheckoutContextProvider({ children }: CheckoutContextProviderProps) {
   const [cartItems, setCartItems] = useState<CartItemsProps[]>([])
-  
+
   const cartLength = cartItems.length
 
   function addProductCart(product: CartItemsProps) {
     let productAlreadyInCart = cartItems.findIndex(cartItem => cartItem.id === product.id)
 
     const newCart = produce(cartItems, (draft) => {
-      if(productAlreadyInCart < 0) {
+      if (productAlreadyInCart < 0) {
         draft.push(product)
       } else {
         draft[productAlreadyInCart].quantity += product.quantity
@@ -36,7 +36,7 @@ export function CheckoutContextProvider({ children }: CheckoutContextProviderPro
 
     setCartItems(newCart)
   }
-  
+
   return (
     <CheckoutContext.Provider value={{ cartItems, addProductCart, cartLength }}>
       {children}

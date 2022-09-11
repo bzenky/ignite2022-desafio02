@@ -1,6 +1,27 @@
-import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money, Trash } from "phosphor-react";
-import { AmountProductInput } from "../../components/AmountProductInput";
-import { CheckoutConfirmButton, CheckoutContainer, CheckoutItem, CheckoutItemButtons, CheckoutItemPrice, CheckoutItemSeparator, CheckoutItemsWrapper, CheckoutItemTitle, CheckoutItemTitleAmountWrapper, CheckoutRemoveItemButton, CheckoutResumeRow, CheckoutResumeText, DeliveryFormWrapper, FormContentSubtitle, FormContentTitle, FormContentTitleWrapper, FormInput, FormInputContainer, FormInputRowWrapper, FormTextTitle, OrderDeliveryPaymentWrapper, OrderResumeCompleteWrapper, OrderResumeWrapper, PaymentMethodButton, PaymentMethodContentWrapper, PaymentMethodWrapper, WrapperTitle } from "./styles";
+import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money } from "phosphor-react";
+import { CheckoutProductItem } from "../../components/CheckoutProductItem";
+import {
+  CheckoutConfirmButton,
+  CheckoutContainer,
+  CheckoutItemsWrapper,
+  CheckoutResumeRow,
+  CheckoutResumeText,
+  DeliveryFormWrapper,
+  FormContentSubtitle,
+  FormContentTitle,
+  FormContentTitleWrapper,
+  FormInput,
+  FormInputContainer,
+  FormInputRowWrapper,
+  FormTextTitle,
+  OrderDeliveryPaymentWrapper,
+  OrderResumeCompleteWrapper,
+  OrderResumeWrapper,
+  PaymentMethodButton,
+  PaymentMethodContentWrapper,
+  PaymentMethodWrapper,
+  WrapperTitle
+} from "./styles";
 
 export function Checkout() {
   return (
@@ -74,46 +95,7 @@ export function Checkout() {
         </WrapperTitle>
         <OrderResumeWrapper>
           <CheckoutItemsWrapper>
-            <CheckoutItem>
-              <img src="/coffees/expresso.png" alt="" width="64" height="64" />
-              <CheckoutItemTitleAmountWrapper>
-                <CheckoutItemTitle>
-                  Expresso Tradicional
-                </CheckoutItemTitle>
-                <CheckoutItemButtons>
-                  <AmountProductInput />
-                  <CheckoutRemoveItemButton>
-                    <Trash size={16} color="#8047F8" />
-                    Remover
-                  </CheckoutRemoveItemButton>
-                </CheckoutItemButtons>
-              </CheckoutItemTitleAmountWrapper>
-              <CheckoutItemPrice>
-                R$ 9,90
-              </CheckoutItemPrice>
-            </CheckoutItem>
-            <CheckoutItemSeparator />
-
-            <CheckoutItem>
-              <img src="/coffees/expresso.png" alt="" width="64" height="64" />
-              <CheckoutItemTitleAmountWrapper>
-                <CheckoutItemTitle>
-                  Expresso Tradicional
-                </CheckoutItemTitle>
-                <CheckoutItemButtons>
-                  <AmountProductInput />
-                  <CheckoutRemoveItemButton>
-                    <Trash size={16} color="#8047F8" />
-                    Remover
-                  </CheckoutRemoveItemButton>
-                </CheckoutItemButtons>
-              </CheckoutItemTitleAmountWrapper>
-              <CheckoutItemPrice>
-                R$ 9,90
-              </CheckoutItemPrice>
-            </CheckoutItem>
-            <CheckoutItemSeparator />
-
+            <CheckoutProductItem />
           </CheckoutItemsWrapper>
           <CheckoutResumeRow>
             <CheckoutResumeText size="0.875">Total de itens</CheckoutResumeText>
