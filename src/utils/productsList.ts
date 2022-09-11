@@ -106,7 +106,7 @@ export const productsList = [
   {
     id: 14,
     name: 'Irlandês',
-    description: 'BEbida a base de café, uísque irlandês, açúcar e chantilly',
+    description: 'Bebida a base de café, uísque irlandês, açúcar e chantilly',
     price: 9.9,
     image: '/coffees/irlandes.png',
     tags: ['especial', 'alcoólico'],

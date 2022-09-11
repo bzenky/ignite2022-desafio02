@@ -34,7 +34,7 @@ export interface CoffeeProps {
   coffee: ProductProps
 }
 
-export function CoffeeCard({coffee}: CoffeeProps) {
+export function CoffeeCard({ coffee }: CoffeeProps) {
   const [quantity, setQuantity] = useState(1)
   const { addProductCart } = useCart()
 
@@ -62,11 +62,12 @@ export function CoffeeCard({coffee}: CoffeeProps) {
       <Tags>
         {coffee.tags.map(tag => {
           return (
-            <Tag>{tag}</Tag>
-            )})
-          }
+            <Tag key={`${coffee.id}-${tag}`}>{tag}</Tag>
+          )
+        })
+        }
       </Tags>
-      
+
       <CoffeeType>{coffee.name}</CoffeeType>
 
       <CoffeeDescription>

@@ -1,6 +1,13 @@
 import styled from 'styled-components'
 
 export const HeaderContainer = styled.header`
+  background-color: ${({ theme }) => theme.background};
+  position: sticky;
+  top: 0;
+  z-index: 10;
+`
+
+export const HeaderWrapper = styled.div`
   max-width: 1120px;
   margin: 0 auto;
   padding: 32px 0;
@@ -40,7 +47,7 @@ export const CartButton = styled.button`
   cursor: pointer;
 `
 
-export const CartLength = styled.span `
+export const CartLength = styled.span`
   position: absolute;
   top: -50%;
   right: -50%;
@@ -52,8 +59,8 @@ export const CartLength = styled.span `
   width: 20px;
   height: 20px;
   border-radius: 20px;
-  background-color: ${({theme}) => theme['yellow-700']};
-  color: ${({theme}) => theme.white};
+  background-color: ${({ theme }) => theme['yellow-700']};
+  color: ${({ theme }) => theme.white};
   font-weight: 700;
   font-size: 0.75rem;
 `
