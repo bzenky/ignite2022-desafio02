@@ -17,6 +17,13 @@ export const CoffeeCardContainer = styled.div`
   }
 `
 
+export const Tags = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+`
+
 export const Tag = styled.span`
   padding: 4px 8px;
   margin: 12px auto 16px;

@@ -16,7 +16,8 @@ import {
   Tag,
   ProductPlusAmountButton,
   StyledMinus,
-  StyledPlus
+  StyledPlus,
+  Tags
 } from "./styles";
 
 export interface ProductProps {
@@ -58,8 +59,14 @@ export function CoffeeCard({coffee}: CoffeeProps) {
     <CoffeeCardContainer key={coffee.id}>
       <img src={coffee.image} alt="" width="120" height="120" />
 
-      <Tag>tradicional</Tag>
-
+      <Tags>
+        {coffee.tags.map(tag => {
+          return (
+            <Tag>{tag}</Tag>
+            )})
+          }
+      </Tags>
+      
       <CoffeeType>{coffee.name}</CoffeeType>
 
       <CoffeeDescription>
