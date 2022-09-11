@@ -82,7 +82,7 @@ export const productsList = [
   {
     id: 11,
     name: 'Cubano',
-    description: 'Drink gelado de café expresso c om rum, creme de leite e hortelã',
+    description: 'Drink gelado de café expresso com rum, creme de leite e hortelã',
     price: 9.9,
     image: '/coffees/cubano.png',
     tags: ['especial', 'alcoólico', 'gelado'],
