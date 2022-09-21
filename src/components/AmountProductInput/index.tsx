@@ -1,3 +1,5 @@
+import { useCart } from "../../hooks/useCart";
+import { CoffeeProps } from "../CoffeeCard";
 import {
   BuyActionWrapper,
   ProductAmountInput,
@@ -8,17 +10,19 @@ import {
   StyledPlus
 } from "./styles";
 
-export function AmountProductInput() {
+export function AmountProductInput({ coffee }: CoffeeProps) {
+  const { increaseQuantityProductCart, decreaseQuantityProductCart } = useCart()
+
   return (
     <BuyActionWrapper>
       <ProductAmountWrapper>
-        <ProductMinusAmountButton>
+        <ProductMinusAmountButton disabled={coffee.quantity === 1} onClick={() => decreaseQuantityProductCart(coffee)}>
           <StyledMinus weight="bold" />
         </ProductMinusAmountButton>
 
-        <ProductAmountInput min="1" max="10" defaultValue={1} readOnly />
+        <ProductAmountInput min="1" max="10" value={coffee.quantity} readOnly />
 
-        <ProductPlusAmountButton>
+        <ProductPlusAmountButton onClick={() => increaseQuantityProductCart(coffee)}>
           <StyledPlus weight="bold" />
         </ProductPlusAmountButton>
       </ProductAmountWrapper>

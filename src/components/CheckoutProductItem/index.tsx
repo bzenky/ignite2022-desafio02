@@ -11,37 +11,33 @@ import {
   CheckoutItemTitleAmountWrapper,
   CheckoutRemoveItemButton
 } from "./styles";
+import { CoffeeProps } from '../CoffeeCard';
 
-export function CheckoutProductItem() {
-  const { cartItems } = useCart()
+export function CheckoutProductItem({ coffee }: CoffeeProps) {
+  const { removeProductCart } = useCart()
+  const CoffeeItemTotalValue = coffee.price * coffee.quantity
 
   return (
     <>
-      {cartItems.map(cartItem => {
-        return (
-          <>
-            <CheckoutItem>
-              <img src={cartItem.image} alt="" width="64" height="64" />
-              <CheckoutItemTitleAmountWrapper>
-                <CheckoutItemTitle>
-                  {cartItem.name}
-                </CheckoutItemTitle>
-                <CheckoutItemButtons>
-                  <AmountProductInput />
-                  <CheckoutRemoveItemButton>
-                    <Trash size={16} color="#8047F8" />
-                    Remover
-                  </CheckoutRemoveItemButton>
-                </CheckoutItemButtons>
-              </CheckoutItemTitleAmountWrapper>
-              <CheckoutItemPrice>
-                R$ {formatPrice(cartItem.price)}
-              </CheckoutItemPrice>
-            </CheckoutItem>
-            <CheckoutItemSeparator />
-          </>
-        )
-      })}
+      <CheckoutItem>
+        <img src={coffee.image} alt="" width="64" height="64" />
+        <CheckoutItemTitleAmountWrapper>
+          <CheckoutItemTitle>
+            {coffee.name}
+          </CheckoutItemTitle>
+          <CheckoutItemButtons>
+            <AmountProductInput coffee={coffee} />
+            <CheckoutRemoveItemButton onClick={() => removeProductCart(coffee)}>
+              <Trash size={16} color="#8047F8" />
+              Remover
+            </CheckoutRemoveItemButton>
+          </CheckoutItemButtons>
+        </CheckoutItemTitleAmountWrapper>
+        <CheckoutItemPrice>
+          R$ {formatPrice(CoffeeItemTotalValue)}
+        </CheckoutItemPrice>
+      </CheckoutItem>
+      <CheckoutItemSeparator />
     </>
   )
 }

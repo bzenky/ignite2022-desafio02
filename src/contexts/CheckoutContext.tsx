@@ -8,8 +8,12 @@ interface CheckoutContextProviderProps {
 
 interface CheckoutContextProps {
   addProductCart: (product: CartItemsProps) => void
+  removeProductCart: (product: CartItemsProps) => void
+  increaseQuantityProductCart: (product: CartItemsProps) => void
+  decreaseQuantityProductCart: (product: CartItemsProps) => void
   cartItems: CartItemsProps[]
   cartLength: number
+  cartProductsTotalPrice: number
 }
 
 interface CartItemsProps extends ProductProps {
@@ -22,6 +26,9 @@ export function CheckoutContextProvider({ children }: CheckoutContextProviderPro
   const [cartItems, setCartItems] = useState<CartItemsProps[]>([])
 
   const cartLength = cartItems.length
+  const cartProductsTotalPrice = cartItems.reduce((acc, item) => {
+    return acc + (item.quantity * item.price)
+  }, 0)
 
   function addProductCart(product: CartItemsProps) {
     let productAlreadyInCart = cartItems.findIndex(cartItem => cartItem.id === product.id)
@@ -37,8 +44,45 @@ export function CheckoutContextProvider({ children }: CheckoutContextProviderPro
     setCartItems(newCart)
   }
 
+  function removeProductCart(product: CartItemsProps) {
+    const updatedCart = cartItems.filter(cartItem => cartItem.id !== product.id)
+    setCartItems(updatedCart)
+  }
+
+  function increaseQuantityProductCart(product: CartItemsProps) {
+    let productAlreadyInCart = cartItems.findIndex(cartItem => cartItem.id === product.id)
+
+    const newCart = produce(cartItems, (draft) => {
+      draft[productAlreadyInCart].quantity += 1
+    })
+
+    setCartItems(newCart)
+  }
+
+  function decreaseQuantityProductCart(product: CartItemsProps) {
+    let productAlreadyInCart = cartItems.findIndex(cartItem => cartItem.id === product.id)
+
+    const newCart = produce(cartItems, (draft) => {
+      if (draft[productAlreadyInCart].quantity > 1) {
+        draft[productAlreadyInCart].quantity -= 1
+      }
+    })
+
+    setCartItems(newCart)
+  }
+
   return (
-    <CheckoutContext.Provider value={{ cartItems, addProductCart, cartLength }}>
+    <CheckoutContext.Provider
+      value={{
+        cartItems,
+        cartLength,
+        addProductCart,
+        removeProductCart,
+        increaseQuantityProductCart,
+        decreaseQuantityProductCart,
+        cartProductsTotalPrice
+      }}
+    >
       {children}
     </CheckoutContext.Provider>
   )

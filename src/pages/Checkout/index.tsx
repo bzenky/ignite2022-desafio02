@@ -1,5 +1,8 @@
 import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money } from "phosphor-react";
 import { CheckoutProductItem } from "../../components/CheckoutProductItem";
+import { ProductProps } from "../../components/CoffeeCard";
+import { useCart } from "../../hooks/useCart";
+import { formatPrice } from "../../utils/formatPrice";
 import {
   CheckoutConfirmButton,
   CheckoutContainer,
@@ -24,6 +27,10 @@ import {
 } from "./styles";
 
 export function Checkout() {
+  const { cartItems, cartProductsTotalPrice } = useCart()
+  const shippingTaxes = cartItems.length > 0 ? 1.9 : 0
+  const cartItemsTotalPrice = cartProductsTotalPrice + shippingTaxes
+
   return (
     <CheckoutContainer>
       <OrderDeliveryPaymentWrapper>
@@ -95,19 +102,26 @@ export function Checkout() {
         </WrapperTitle>
         <OrderResumeWrapper>
           <CheckoutItemsWrapper>
-            <CheckoutProductItem />
+            {cartItems.map((coffee: ProductProps) => {
+              return (
+                <CheckoutProductItem
+                  key={coffee.id}
+                  coffee={coffee}
+                />
+              )
+            })}
           </CheckoutItemsWrapper>
           <CheckoutResumeRow>
             <CheckoutResumeText size="0.875">Total de itens</CheckoutResumeText>
-            <CheckoutResumeText size="1">R$ 19,90</CheckoutResumeText>
+            <CheckoutResumeText size="1">R$ {formatPrice(cartProductsTotalPrice)}</CheckoutResumeText>
           </CheckoutResumeRow>
           <CheckoutResumeRow>
             <CheckoutResumeText size="0.875">Entrega</CheckoutResumeText>
-            <CheckoutResumeText size="1">R$ 1,90</CheckoutResumeText>
+            <CheckoutResumeText size="1">R$ {formatPrice(shippingTaxes)}</CheckoutResumeText>
           </CheckoutResumeRow>
           <CheckoutResumeRow>
             <CheckoutResumeText size="1.25" bold colorDarker>Total</CheckoutResumeText>
-            <CheckoutResumeText size="1.25" bold colorDarker>R$ 21,80</CheckoutResumeText>
+            <CheckoutResumeText size="1.25" bold colorDarker>R$ {formatPrice(cartItemsTotalPrice)}</CheckoutResumeText>
           </CheckoutResumeRow>
           <CheckoutConfirmButton>
             Confirmar pedido
