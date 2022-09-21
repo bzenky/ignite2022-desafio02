@@ -27,7 +27,7 @@ export interface ProductProps {
   price: number
   image: string
   tags: string[]
-  quantity: number
+  quantity?: number
 }
 
 export interface CoffeeProps {

@@ -15,7 +15,7 @@ import { CoffeeProps } from '../CoffeeCard';
 
 export function CheckoutProductItem({ coffee }: CoffeeProps) {
   const { removeProductCart } = useCart()
-  const CoffeeItemTotalValue = coffee.price * coffee.quantity
+  const CoffeeItemTotalValue = coffee.price * coffee.quantity!
 
   return (
     <>
