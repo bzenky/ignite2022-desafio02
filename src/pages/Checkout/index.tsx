@@ -1,4 +1,5 @@
-import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money } from "phosphor-react";
+import { Bank, CreditCard, CurrencyDollar, Money } from "phosphor-react";
+import { CheckoutDeliveryForm } from "../../components/CheckoutDeliveryForm";
 import { CheckoutProductItem } from "../../components/CheckoutProductItem";
 import { ProductProps } from "../../components/CoffeeCard";
 import { useCart } from "../../hooks/useCart";
@@ -9,13 +10,9 @@ import {
   CheckoutItemsWrapper,
   CheckoutResumeRow,
   CheckoutResumeText,
-  DeliveryFormWrapper,
   FormContentSubtitle,
   FormContentTitle,
   FormContentTitleWrapper,
-  FormInput,
-  FormInputContainer,
-  FormInputRowWrapper,
   FormTextTitle,
   OrderDeliveryPaymentWrapper,
   OrderResumeCompleteWrapper,
@@ -37,32 +34,8 @@ export function Checkout() {
         <WrapperTitle>
           Complete seu pedido
         </WrapperTitle>
-        <DeliveryFormWrapper>
-          <FormContentTitleWrapper>
-            <MapPinLine size={22} color="#C47F17" />
-            <FormTextTitle>
-              <FormContentTitle>
-                Endereço de Entrega
-              </FormContentTitle>
-              <FormContentSubtitle>
-                Informe o seu endereço onde deseja receber seu pedido
-              </FormContentSubtitle>
-            </FormTextTitle>
-          </FormContentTitleWrapper>
-          <FormInputContainer>
-            <FormInput placeholder="CEP" width="default" />
-            <FormInput placeholder="Rua" width="full" />
-            <FormInputRowWrapper>
-              <FormInput placeholder="Número" width="default" />
-              <FormInput placeholder="Complemento" width="full" />
-            </FormInputRowWrapper>
-            <FormInputRowWrapper>
-              <FormInput placeholder="Bairro" width="default" />
-              <FormInput placeholder="Cidade" width="full" />
-              <FormInput placeholder="UF" width="small" />
-            </FormInputRowWrapper>
-          </FormInputContainer>
-        </DeliveryFormWrapper>
+
+        <CheckoutDeliveryForm />
 
         <PaymentMethodWrapper>
           <FormContentTitleWrapper>
