@@ -138,4 +138,8 @@ export const CheckoutConfirmButton = styled.button`
   &:hover {
     background-color: ${({ theme }) => theme['yellow-700']};
   }
+
+  &:disabled {
+    background-color: ${({ theme }) => theme['gray-500']};
+  }
 `
