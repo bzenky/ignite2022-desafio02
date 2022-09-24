@@ -26,6 +26,7 @@ import {
   PaymentMethodWrapper,
   WrapperTitle
 } from "./styles";
+import { useNavigate } from "react-router-dom";
 
 const confirmOrderFormValidationSchema = zod.object({
   cep: zod.string().min(1, 'Informe o CEP'),
@@ -42,7 +43,7 @@ export type OrderData = zod.infer<typeof confirmOrderFormValidationSchema>
 type ConfirmOrderFormData = OrderData
 
 export function Checkout() {
-  const { cartItems, cartProductsTotalPrice } = useCart()
+  const { cartItems, cartProductsTotalPrice, cleanCart } = useCart()
   const shippingTaxes = cartItems.length > 0 ? 1.9 : 0
   const cartItemsTotalPrice = cartProductsTotalPrice + shippingTaxes
 
@@ -52,8 +53,14 @@ export function Checkout() {
 
   const { handleSubmit } = confirmOrderForm
 
+  const navigate = useNavigate()
+
   function handleConfirmOrder(data: ConfirmOrderFormData) {
-    console.log(data)
+    navigate('/checkout-done', {
+      state: data
+    })
+
+    cleanCart()
   }
 
   return (

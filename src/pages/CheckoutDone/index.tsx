@@ -12,8 +12,27 @@ import {
 } from "./styles";
 
 import checkoutDone from '../../assets/checkoutDone.svg'
+import { useLocation, useNavigate } from "react-router-dom";
+import { OrderData } from "../Checkout";
+import { useEffect } from "react";
+
+interface LocationType {
+  state: OrderData
+}
 
 export function CheckoutDone() {
+
+  const { state } = useLocation() as unknown as LocationType
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!state) {
+      navigate('/')
+    }
+  }, [])
+
+  if (!state) return <></>
+
   return (
     <CheckoutDoneContainer>
       <CheckoutTitle>Uhu! Pedido confirmado</CheckoutTitle>
@@ -27,10 +46,10 @@ export function CheckoutDone() {
             </CheckoutOrderIconWrapper>
             <CheckoutOrderSpanWrapper>
               <CheckoutOrderSpan>
-                Entrega em <strong>Rua João Daniel Martinelli, 102</strong>
+                Entrega em <strong>{state.rua}, {state.numero}</strong>
               </CheckoutOrderSpan>
               <CheckoutOrderSpan>
-                Farrapos - Porto Alegre - RS
+                {state.bairro} - {state.cidade} - {state.uf}
               </CheckoutOrderSpan>
             </CheckoutOrderSpanWrapper>
           </CheckoutOrderInfoTypeWrapper>

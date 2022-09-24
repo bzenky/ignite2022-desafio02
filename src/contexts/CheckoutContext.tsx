@@ -11,6 +11,7 @@ interface CheckoutContextProps {
   removeProductCart: (product: ProductProps) => void
   increaseQuantityProductCart: (product: ProductProps) => void
   decreaseQuantityProductCart: (product: ProductProps) => void
+  cleanCart: () => void
   cartItems: ProductProps[]
   cartLength: number
   cartProductsTotalPrice: number
@@ -67,11 +68,16 @@ export function CheckoutContextProvider({ children }: CheckoutContextProviderPro
     setCartItems(newCart)
   }
 
+  function cleanCart() {
+    setCartItems([])
+  }
+
   return (
     <CheckoutContext.Provider
       value={{
         cartItems,
         cartLength,
+        cleanCart,
         addProductCart,
         removeProductCart,
         increaseQuantityProductCart,
