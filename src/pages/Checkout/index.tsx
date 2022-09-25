@@ -1,9 +1,8 @@
-import { Bank, CreditCard, CurrencyDollar, Money } from "phosphor-react";
+import { CurrencyDollar } from "phosphor-react";
 import { CheckoutDeliveryForm } from "../../components/CheckoutDeliveryForm";
 import { CheckoutProductItem } from "../../components/CheckoutProductItem";
 import { ProductProps } from "../../components/CoffeeCard";
 import { useCart } from "../../hooks/useCart";
-import { formatPrice } from "../../utils/formatPrice";
 import * as zod from "zod";
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm, FormProvider } from 'react-hook-form'
@@ -12,8 +11,6 @@ import {
   CheckoutConfirmButton,
   CheckoutContainer,
   CheckoutItemsWrapper,
-  CheckoutResumeRow,
-  CheckoutResumeText,
   FormContentSubtitle,
   FormContentTitle,
   FormContentTitleWrapper,
@@ -21,12 +18,12 @@ import {
   OrderDeliveryPaymentWrapper,
   OrderResumeCompleteWrapper,
   OrderResumeWrapper,
-  PaymentMethodButton,
-  PaymentMethodContentWrapper,
   PaymentMethodWrapper,
   WrapperTitle
 } from "./styles";
 import { useNavigate } from "react-router-dom";
+import { CheckoutResume } from "../../components/CheckoutResume";
+import { PaymentMethods } from "../../components/PaymentMethods";
 
 const confirmOrderFormValidationSchema = zod.object({
   cep: zod.string().min(1, 'Informe o CEP'),
@@ -43,9 +40,7 @@ export type OrderData = zod.infer<typeof confirmOrderFormValidationSchema>
 type ConfirmOrderFormData = OrderData
 
 export function Checkout() {
-  const { cartItems, cartProductsTotalPrice, cleanCart } = useCart()
-  const shippingTaxes = cartItems.length > 0 ? 1.9 : 0
-  const cartItemsTotalPrice = cartProductsTotalPrice + shippingTaxes
+  const { cartItems, cleanCart } = useCart()
 
   const confirmOrderForm = useForm<ConfirmOrderFormData>({
     resolver: zodResolver(confirmOrderFormValidationSchema)
@@ -83,20 +78,7 @@ export function Checkout() {
                 </FormContentSubtitle>
               </FormTextTitle>
             </FormContentTitleWrapper>
-            <PaymentMethodContentWrapper>
-              <PaymentMethodButton>
-                <CreditCard size={16} color="#8047F8" />
-                Cartão de Crédito
-              </PaymentMethodButton>
-              <PaymentMethodButton>
-                <Bank size={16} color="#8047F8" />
-                Cartão de Débito
-              </PaymentMethodButton>
-              <PaymentMethodButton>
-                <Money size={16} color="#8047F8" />
-                Dinheiro
-              </PaymentMethodButton>
-            </PaymentMethodContentWrapper>
+            <PaymentMethods />
           </PaymentMethodWrapper>
         </OrderDeliveryPaymentWrapper>
         <OrderResumeCompleteWrapper>
@@ -114,18 +96,7 @@ export function Checkout() {
                 )
               })}
             </CheckoutItemsWrapper>
-            <CheckoutResumeRow>
-              <CheckoutResumeText size="0.875">Total de itens</CheckoutResumeText>
-              <CheckoutResumeText size="1">R$ {formatPrice(cartProductsTotalPrice)}</CheckoutResumeText>
-            </CheckoutResumeRow>
-            <CheckoutResumeRow>
-              <CheckoutResumeText size="0.875">Entrega</CheckoutResumeText>
-              <CheckoutResumeText size="1">R$ {formatPrice(shippingTaxes)}</CheckoutResumeText>
-            </CheckoutResumeRow>
-            <CheckoutResumeRow>
-              <CheckoutResumeText size="1.25" bold colorDarker>Total</CheckoutResumeText>
-              <CheckoutResumeText size="1.25" bold colorDarker>R$ {formatPrice(cartItemsTotalPrice)}</CheckoutResumeText>
-            </CheckoutResumeRow>
+            <CheckoutResume />
             <CheckoutConfirmButton
               type='submit'
               disabled={cartItems.length === 0}

@@ -1,9 +1,4 @@
 import styled from "styled-components";
-interface CheckoutResumeSpanProps {
-  size: string
-  bold?: boolean
-  colorDarker?: boolean
-}
 
 export const CheckoutContainer = styled.form`
   display: flex;
@@ -50,36 +45,6 @@ export const FormContentSubtitle = styled.span`
   color: ${({ theme }) => theme['gray-600']}
 `
 
-export const PaymentMethodContentWrapper = styled.div`
-  display: flex;
-  gap: 12px;
-  justify-content: space-between;
-  margin-top: 32px;
-`
-
-export const PaymentMethodButton = styled.button`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 12px;
-  padding: 16px;
-  width: 178px;
-  border-radius: 6px;
-  background-color: ${({ theme }) => theme['gray-300']};
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  color: ${({ theme }) => theme['gray-600']};
-  border: 0;
-  cursor: pointer;
-
-  transition: background-color 0.2s, color 0.2s;
-
-  &:hover {
-    background-color: ${({ theme }) => theme['gray-400']};
-    color: ${({ theme }) => theme['gray-700']};
-  }
-`
-
 export const OrderResumeWrapper = styled.div`
   width: 448px;
   padding: 40px;
@@ -98,22 +63,6 @@ export const CheckoutItemsWrapper = styled.div`
 export const CheckoutResumeWrapper = styled.div`
   display: flex;
   flex-direction: column;
-`
-
-export const CheckoutResumeRow = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  &+div {
-    margin-top: 12px;
-  }
-`
-
-export const CheckoutResumeText = styled.div<CheckoutResumeSpanProps>`
-  font-weight: ${({ bold }) => bold ? '700' : '400'};
-  font-size: ${({ size }) => size}rem;
-  color: ${({ colorDarker, theme }) => colorDarker ? theme['gray-700'] : theme['gray-600']};
 `
 
 export const CheckoutConfirmButton = styled.button`
