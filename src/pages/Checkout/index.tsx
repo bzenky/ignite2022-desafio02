@@ -25,14 +25,25 @@ import { useNavigate } from "react-router-dom";
 import { CheckoutResume } from "../../components/CheckoutResume";
 import { PaymentMethods } from "../../components/PaymentMethods";
 
+enum PaymentMethodsProps {
+  credit = 'credit',
+  debit = 'debit',
+  money = 'money'
+}
+
 const confirmOrderFormValidationSchema = zod.object({
-  cep: zod.string().min(1, 'Informe o CEP'),
-  rua: zod.string().min(1, 'Informe a rua'),
-  numero: zod.string().min(1, 'Informe o número'),
-  complemento: zod.string().optional(),
-  bairro: zod.string().min(1, 'Informe o bairro'),
-  cidade: zod.string().min(1, 'Informe a cidade'),
-  uf: zod.string().min(1, 'Informe o estado')
+  zip: zod.string().min(1, 'Informe o CEP'),
+  adress: zod.string().min(1, 'Informe a rua'),
+  number: zod.string().min(1, 'Informe o número'),
+  adressComplement: zod.string().optional(),
+  district: zod.string().min(1, 'Informe o bairro'),
+  city: zod.string().min(1, 'Informe a cidade'),
+  uf: zod.string().min(1, 'Informe o estado'),
+  paymentMethod: zod.nativeEnum(PaymentMethodsProps, {
+    errorMap: () => {
+      return { message: 'Informe o método de pagamento' }
+    }
+  })
 })
 
 export type OrderData = zod.infer<typeof confirmOrderFormValidationSchema>

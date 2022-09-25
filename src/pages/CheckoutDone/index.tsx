@@ -15,6 +15,7 @@ import checkoutDone from '../../assets/checkoutDone.svg'
 import { useLocation, useNavigate } from "react-router-dom";
 import { OrderData } from "../Checkout";
 import { useEffect } from "react";
+import { paymentMethodsList } from "../../components/PaymentMethods";
 
 interface LocationType {
   state: OrderData
@@ -46,10 +47,15 @@ export function CheckoutDone() {
             </CheckoutOrderIconWrapper>
             <CheckoutOrderSpanWrapper>
               <CheckoutOrderSpan>
-                Entrega em <strong>{state.rua}, {state.numero}</strong>
+                Entrega em <strong>{state.adress}, {state.number}</strong>
               </CheckoutOrderSpan>
+              {state.adressComplement && (
+                <CheckoutOrderSpan>
+                  {state.adressComplement}
+                </CheckoutOrderSpan>
+              )}
               <CheckoutOrderSpan>
-                {state.bairro} - {state.cidade} - {state.uf}
+                {state.district} - {state.city} - {state.uf}
               </CheckoutOrderSpan>
             </CheckoutOrderSpanWrapper>
           </CheckoutOrderInfoTypeWrapper>
@@ -70,7 +76,7 @@ export function CheckoutDone() {
             </CheckoutOrderIconWrapper>
             <CheckoutOrderSpanWrapper>
               <CheckoutOrderSpan>Pagamento na entrega</CheckoutOrderSpan>
-              <CheckoutOrderSpan bold>Cartão de Crédito</CheckoutOrderSpan>
+              <CheckoutOrderSpan bold>{paymentMethodsList[state.paymentMethod].label}</CheckoutOrderSpan>
             </CheckoutOrderSpanWrapper>
           </CheckoutOrderInfoTypeWrapper>
         </CheckoutOrderInfoWrapper>

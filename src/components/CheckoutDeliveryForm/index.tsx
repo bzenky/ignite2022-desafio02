@@ -42,40 +42,46 @@ export function CheckoutDeliveryForm() {
         <Input
           placeholder="CEP"
           width="default"
-          {...register("cep")}
-          error={errors.cep?.message}
+          {...register("zip")}
+          error={errors.zip?.message}
         />
         <Input
           placeholder="Rua"
           width="full"
-          {...register("rua")}
-          error={errors.rua?.message}
+          {...register("adress")}
+          error={errors.adress?.message}
         />
         <FormInputRowWrapper>
           <Input
             placeholder="Número"
             width="default"
-            {...register("numero")}
-            error={errors.numero?.message}
+            {...register("number")}
+            error={errors.number?.message}
           />
-          <Input placeholder="Complemento" width="full" />
+          <Input
+            placeholder="Complemento"
+            width="full"
+            {...register("adressComplement")}
+            error={errors.adressComplement?.message}
+          />
         </FormInputRowWrapper>
         <FormInputRowWrapper>
           <Input
             placeholder="Bairro"
             width="default"
-            {...register("bairro")}
-            error={errors.bairro?.message}
+            {...register("district")}
+            error={errors.district?.message}
           />
           <Input
             placeholder="Cidade"
             width="full"
-            {...register("cidade")}
-            error={errors.cidade?.message}
+            {...register("city")}
+            error={errors.city?.message}
           />
           <Input
             placeholder="UF"
             width="small"
+            maxLength={2}
             {...register("uf")}
             error={errors.uf?.message}
           />
