@@ -1,4 +1,9 @@
-import { CurrencyDollar, MapPin, Timer } from "phosphor-react";
+import { useEffect } from "react"
+import { useLocation, useNavigate } from "react-router-dom"
+import { CurrencyDollar, MapPin, Timer } from "phosphor-react"
+import { OrderData } from "../Checkout"
+import { paymentMethodsList } from "../../components/PaymentMethods"
+
 import {
   CheckoutDoneContainer,
   CheckoutDoneMain,
@@ -9,13 +14,8 @@ import {
   CheckoutOrderSpanWrapper,
   CheckoutSubtitle,
   CheckoutTitle
-} from "./styles";
-
+} from "./styles"
 import checkoutDone from '../../assets/checkoutDone.svg'
-import { useLocation, useNavigate } from "react-router-dom";
-import { OrderData } from "../Checkout";
-import { useEffect } from "react";
-import { paymentMethodsList } from "../../components/PaymentMethods";
 
 interface LocationType {
   state: OrderData
@@ -36,8 +36,13 @@ export function CheckoutDone() {
 
   return (
     <CheckoutDoneContainer>
-      <CheckoutTitle>Uhu! Pedido confirmado</CheckoutTitle>
-      <CheckoutSubtitle>Agora é só aguardar que logo o chegará até você</CheckoutSubtitle>
+      <CheckoutTitle>
+        Uhu! Pedido confirmado
+      </CheckoutTitle>
+
+      <CheckoutSubtitle>
+        Agora é só aguardar que logo o chegará até você
+      </CheckoutSubtitle>
 
       <CheckoutDoneMain>
         <CheckoutOrderInfoWrapper>
@@ -49,11 +54,13 @@ export function CheckoutDone() {
               <CheckoutOrderSpan>
                 Entrega em <strong>{state.adress}, {state.number}</strong>
               </CheckoutOrderSpan>
+
               {state.adressComplement && (
                 <CheckoutOrderSpan>
                   {state.adressComplement}
                 </CheckoutOrderSpan>
               )}
+
               <CheckoutOrderSpan>
                 {state.district} - {state.city} - {state.uf}
               </CheckoutOrderSpan>
@@ -64,6 +71,7 @@ export function CheckoutDone() {
             <CheckoutOrderIconWrapper color="#DBAC2C">
               <Timer size={16} color="white" weight="fill" />
             </CheckoutOrderIconWrapper>
+
             <CheckoutOrderSpanWrapper>
               <CheckoutOrderSpan>Previsão de entrega</CheckoutOrderSpan>
               <CheckoutOrderSpan bold>20 min - 30 min</CheckoutOrderSpan>
@@ -74,12 +82,19 @@ export function CheckoutDone() {
             <CheckoutOrderIconWrapper color="#C47F17">
               <CurrencyDollar size={16} color="white" weight="fill" />
             </CheckoutOrderIconWrapper>
+
             <CheckoutOrderSpanWrapper>
-              <CheckoutOrderSpan>Pagamento na entrega</CheckoutOrderSpan>
-              <CheckoutOrderSpan bold>{paymentMethodsList[state.paymentMethod].label}</CheckoutOrderSpan>
+              <CheckoutOrderSpan>
+                Pagamento na entrega
+              </CheckoutOrderSpan>
+
+              <CheckoutOrderSpan bold>
+                {paymentMethodsList[state.paymentMethod].label}
+              </CheckoutOrderSpan>
             </CheckoutOrderSpanWrapper>
           </CheckoutOrderInfoTypeWrapper>
         </CheckoutOrderInfoWrapper>
+
         <img src={checkoutDone} alt="Checkout Done Image" />
       </CheckoutDoneMain>
     </CheckoutDoneContainer>

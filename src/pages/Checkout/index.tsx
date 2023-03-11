@@ -1,11 +1,14 @@
-import { CurrencyDollar } from "phosphor-react";
-import { CheckoutDeliveryForm } from "../../components/CheckoutDeliveryForm";
-import { CheckoutProductItem } from "../../components/CheckoutProductItem";
-import { ProductProps } from "../../components/CoffeeCard";
-import { useCart } from "../../hooks/useCart";
-import * as zod from "zod";
-import { zodResolver } from '@hookform/resolvers/zod'
+import { useNavigate } from "react-router-dom"
+import { CurrencyDollar } from "phosphor-react"
+import * as zod from "zod"
 import { useForm, FormProvider } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { CheckoutDeliveryForm } from "../../components/CheckoutDeliveryForm"
+import { CheckoutProductItem } from "../../components/CheckoutProductItem"
+import { ProductProps } from "../../components/CoffeeCard"
+import { CheckoutResume } from "../../components/CheckoutResume"
+import { PaymentMethods } from "../../components/PaymentMethods"
+import { useCart } from "../../hooks/useCart"
 
 import {
   CheckoutConfirmButton,
@@ -20,10 +23,7 @@ import {
   OrderResumeWrapper,
   PaymentMethodWrapper,
   WrapperTitle
-} from "./styles";
-import { useNavigate } from "react-router-dom";
-import { CheckoutResume } from "../../components/CheckoutResume";
-import { PaymentMethods } from "../../components/PaymentMethods";
+} from "./styles"
 
 enum PaymentMethodsProps {
   credit = 'credit',
@@ -76,26 +76,33 @@ export function Checkout() {
           <WrapperTitle>
             Complete seu pedido
           </WrapperTitle>
+
           <CheckoutDeliveryForm />
+
           <PaymentMethodWrapper>
             <FormContentTitleWrapper>
               <CurrencyDollar size={22} color="#8047F8" />
+
               <FormTextTitle>
                 <FormContentTitle>
                   Pagamento
                 </FormContentTitle>
+
                 <FormContentSubtitle>
                   O pagamento é feito na entrega. Escolha  a forma que deseja pagar.
                 </FormContentSubtitle>
               </FormTextTitle>
             </FormContentTitleWrapper>
+
             <PaymentMethods />
           </PaymentMethodWrapper>
         </OrderDeliveryPaymentWrapper>
+
         <OrderResumeCompleteWrapper>
           <WrapperTitle>
             Cafés selecionados
           </WrapperTitle>
+
           <OrderResumeWrapper>
             <CheckoutItemsWrapper>
               {cartItems.map((coffee: ProductProps) => {
@@ -107,7 +114,9 @@ export function Checkout() {
                 )
               })}
             </CheckoutItemsWrapper>
+
             <CheckoutResume />
+
             <CheckoutConfirmButton
               type='submit'
               disabled={cartItems.length === 0}

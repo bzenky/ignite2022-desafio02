@@ -1,7 +1,22 @@
-import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react';
-import coffeeDeliverySplash from '../../assets/coffeeDeliverySplash.png';
-import { Benefit, BenefitContainer, BenefitIconWrapper, BenefitsContainer, HomeContainer, MenuContainer, MenuItems, MenuTitle, SplashBackground, SplashContainer, SubTitle, Title, TitleContainer } from './styles';
-import { CoffeeMenu } from '../../components/CoffeeMenu';
+import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
+import { CoffeeMenu } from '../../components/CoffeeMenu'
+
+import {
+  Benefit,
+  BenefitContainer,
+  BenefitIconWrapper,
+  BenefitsContainer,
+  HomeContainer,
+  MenuContainer,
+  MenuItems,
+  MenuTitle,
+  SplashBackground,
+  SplashContainer,
+  SubTitle,
+  Title,
+  TitleContainer
+} from './styles'
+import coffeeDeliverySplash from '../../assets/coffeeDeliverySplash.png'
 
 export function Home() {
   return (
@@ -9,8 +24,13 @@ export function Home() {
       <SplashBackground>
         <SplashContainer>
           <TitleContainer>
-            <Title>Encontre o café perfeito para qualquer hora do dia</Title>
-            <SubTitle>Com o Coffee Delivery você recebe seu café onde estiver a qualquer hora</SubTitle>
+            <Title>
+              Encontre o café perfeito para qualquer hora do dia
+            </Title>
+
+            <SubTitle>
+              Com o Coffee Delivery você recebe seu café onde estiver a qualquer hora
+            </SubTitle>
 
             <BenefitsContainer>
               <BenefitContainer>
@@ -36,6 +56,7 @@ export function Home() {
                   </BenefitIconWrapper>
                   Embalagem mantém o café intacto
                 </Benefit>
+
                 <Benefit>
                   <BenefitIconWrapper backgroundColor='#8047F8'>
                     <Coffee size={16} weight="fill" color="white" />
